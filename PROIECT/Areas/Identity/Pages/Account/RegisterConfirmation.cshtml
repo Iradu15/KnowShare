@@ -1,0 +1,27 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<h1 class="index-article-title" style="text-decoration:none">Esti la doar un click distanta de accesarea site-ului!</h1>
+<br /> 
+<div style="margin-left: 500px;">
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+            <p class="small-text">
+                             Apasa&nbsp;<a id="confirm-link" href="@Model.EmailConfirmationUrl" style="color:deepskyblue;">AICI</a>&nbsp; pentru a-ti confirma contul.
+            </p>
+
+            <img src="https://clipground.com/images/almost-there-puzzle-clipart-images-18.jpg" style="width:350px; height:350px;" /> 
+            }
+            else
+            {
+                    <p>
+                                Please check your email to confirm your account.
+                    </p>
+            }
+        }
+
+</div>

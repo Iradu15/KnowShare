@@ -1,0 +1,37 @@
+﻿@model PROIECT.Models.Article
+<h2 class="index-article-title" class="text-center mt-5">Adaugare articol</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+            @using (Html.BeginForm(actionName: "New", controllerName: "Articles", method: FormMethod.Post))
+            {
+                @Html.ValidationSummary(false, "", new { @class = "textdanger" })
+
+                @Html.Label("Title", "Titlu Articol", new { @class="small-text"} )
+                <br />
+                @Html.TextBox("Title", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Title, null, new {@class = "text-danger" })
+                <br />
+                <br />
+                @Html.Label("Content", "Continut Articol", new {@class="small-text"})
+                <br />
+                @Html.TextArea("Content", "Tasteaza aici", new { @class = "summernote"})
+                @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+                <br />
+                <br />
+
+                <label class="small-text">Selectati domeniul</label>
+                @Html.DropDownListFor(m => m.DomainId, new SelectList(Model.Dom, "Value", "Text"),
+            "Selectati domeniul", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.DomainId, null, new {@class = "text-danger" })
+
+                <br />
+                <br />
+
+                <button class="btn btn-success" type="submit">Adauga articol </button>
+
+            }
+        </div>
+    </div>
+</div>

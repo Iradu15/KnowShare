@@ -1,0 +1,36 @@
+﻿@model PROIECT.Models.ApplicationUser
+
+<h2 class="text-center mt-5">Adaugare utilizator</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+            @using (Html.BeginForm(actionName: "New", controllerName: "Admins", method: FormMethod.Post))
+            {
+                @Html.ValidationSummary(false, "", new { @class = "textdanger" })
+
+                @Html.Label("UserName", "Nume utlizator")
+                <br />
+                @Html.TextBox("UserName", null, new { @class = "form-control"})
+                @Html.ValidationMessageFor(m => m.UserName, null, new {@class = "text-danger" })
+                <br />
+                <br />
+                @Html.Label("Email", "Email utilizator")
+                <br />
+                @Html.TextBox("Email", null, new { @class = "form-control"})
+                @Html.ValidationMessageFor(m => m.Email, null, new {@class = "text-danger" })
+                <br />
+                <br />
+
+                <i class="bi bi-card-list"></i>
+                <label>Selectati rolul</label>
+
+                @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text"), null, new { @class = "form-control" })
+                <br />
+
+                <button class="btn btn-success" type="submit">Adauga utilizator </button>
+
+            }
+        </div>
+    </div>
+</div>

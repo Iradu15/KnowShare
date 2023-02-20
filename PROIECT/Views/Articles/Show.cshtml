@@ -1,0 +1,103 @@
+﻿@model PROIECT.Models.Article
+
+@* Afisarea unui articol impreuna cu domeniul din care face *@
+<div class="d-flex justify-content-center">
+
+    <a class="btn btn-outline-success" href="/Articles/Index/" style="color:white;">Afisare articole</a>
+
+    <a class="btn btn-outline-success" href="/Articles/New" style="color:white;">Adauga articol</a>
+
+</div>
+
+<br />
+
+<div class="card">
+
+    @Html.Partial("ArticleInfo", Model)
+
+    @if ((ViewBag.AfisareButoane == true && Model.UserID == ViewBag.UserCurent) || ViewBag.EsteAdmin == true) // daca e (editor si articolul e al lui) sau e admin
+    {
+        <div class="d-flex flex-row justify-content-between p-3 border-1 border-top">
+            @if (Convert.ToBoolean(ViewBag.Restrictionare) == true || (Convert.ToBoolean(ViewBag.Restrictionare) == false && Model.UserID != ViewBag.UserCurent)) // articolul nu mai poate fi modoficat de creator daca e restrictionat de admin
+            { 
+                <a class="btn btn-success" href="/Articles/Edit/@Model.Id">Editeaza articol</a>
+            }
+
+            @if (ViewBag.EsteAdmin == true) // doar daca e admin poate aduce articolul la versiunea lui anterioara
+            {
+                <form method="post" action="/Articles/Undo/@Model.Id">
+                    <button class="btn btn-danger" type="submit">Revino la varianta anterioara</button>
+                </form>
+                @* revin la varianta anterioara daca exista *@
+
+                @*Nu este restrictionat asa ca afisez butonul de restrictionare*@
+                @if (Convert.ToBoolean(ViewBag.Restrictionare) == true)
+                {
+                    <form method="post" action="/Articles/Restrict/@Model.Id">
+
+                        <button class="btn btn-danger" type="submit">Restrictioneaza accesul</button>
+
+                    </form>
+                    
+                }
+                else{
+                    <form method="post" action="/Articles/Restrict/@Model.Id">
+
+                        <button class="btn btn-outline-success" type="submit">Da accesul</button>
+
+                    </form>
+                }
+                
+            }
+
+            <form method="post" action="/Articles/Delete/@Model.Id">
+
+                <button class="btn btn-danger" type="submit">Sterge articol</button>
+
+            </form>
+
+
+
+        </div>
+    }
+
+
+
+</div>
+
+
+@*
+    * Mai sus se afla varianta in care se utilizeaza helperul @Html.Partial
+    * Mai jos se afla varianta in care se utilizeaza tagul <partial>
+
+    <partial name="ArticleInfo" model="Model"></partial> *@
+
+@*
+
+    * Partialul inlocuieste secventa de cod comentata
+    * Secventa a fost mutata in partialul ArticleInfo
+    * Partial care este apelat
+
+    <div class="card-body">
+
+    <h3 class="card-title alert-success py-3 px-3 rounded-2">@Model.Title</h3>
+
+    <div class="card-text">@Model.Content</div>
+
+    <div class="d-flex justify-content-between flex-row mt-5">
+
+    <div><i class="bi bi-globe"></i> @Model.Category.CategoryName</div>
+
+    <span class="alert-success">@Model.Date</span>
+
+    </div>
+
+    </div>
+
+    *@
+
+
+
+
+<br />
+<br />

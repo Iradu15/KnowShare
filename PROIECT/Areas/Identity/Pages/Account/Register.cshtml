@@ -1,0 +1,48 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="index-article-title">Creeaza un cont nou</h1>
+
+<div class="row">
+    <div class="col-md-4" style="align-content:right;">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2 class="index-article-title" style="text-decoration:none; font-size:18px;">Hei! Ne bucuram ca vrei sa faci parte din grupul nostru de minti luminate! </h2>
+           
+            <p class="small-text"> Esti la doar cateva click-uri de asta.</p>
+            <p class="small-text"> Introdu datele tale mai jos, apoi apasa butonul "creeaza cont".</p>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Creeaza contul</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <br />
+        <img src="https://origin-www.bublup.com/wp-content/uploads/2021/01/onlinecourse3.jpg"
+        style="width:500px; height:350px; margin-left: 175px">
+        <br /> 
+    </div>
+   
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

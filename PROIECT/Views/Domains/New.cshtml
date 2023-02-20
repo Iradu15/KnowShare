@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Adaugare Domeniu";
+}
+
+<h2>Adaugare Domeniu</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Domains"))
+{
+    @Html.Label("DomainName", "Nume domeniu")
+    <br />
+    @Html.TextBox("DomainName")
+    @Html.ValidationMessage("DomainName", null, new {@class = "text-danger"})
+    <br />
+    <button class="btn btn-success" type="submit">Adauga domeniu</button>
+}

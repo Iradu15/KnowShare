@@ -1,0 +1,52 @@
+﻿@model PROIECT.Models.Article
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@if (ViewBag.R == true){
+    @using (Html.BeginForm(actionName: "Edit",
+controllerName: "Articles",
+method: FormMethod.Post,
+routeValues: new { id = Model.Id })) // id vine din ruta din programm,cs
+    {
+        @Html.Label("Title", "Titlu Articol")
+        <br />
+        @Html.TextBox("Title", Model.Title, new { @class = "form-control"
+            })
+        // In cazul in care ValidationMessageFor este gol sau null se va afisa mesajul de
+        //validare aflat in Model ca parametru al variabilei ErrorMessage.
+        // Altfel mesaul dim model va fi suprascris
+        // Daca nici una nici alta atunci mesaj default de la framework
+        @Html.ValidationMessageFor(m => m.Title, null, new {
+            @class = "text-danger" })
+        <br />
+
+        <br />
+        @Html.Label("Content", "Continut Articol")
+        <br />
+        @Html.TextArea("Content", null, new { @class = "summernote" })
+        @Html.ValidationMessage("Content", null, new { @class =
+            "text-danger" })
+        <br />
+
+        <br />
+        <label>Selectati domeniul</label>
+        @Html.DropDownListFor(m => m.DomainId, new
+            SelectList(Model.Dom, "Value", "Text"),
+            "Selectati domeniul", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DomainId, null, new {
+            @class = "text-danger" })
+        <br />
+        @Html.ValidationSummary(false, "", new { @class = "textdanger" })
+
+        <br />
+        <button class="btn btn-success" type="submit">
+            Modifica
+            articol
+        </button>
+    }
+
+}
+

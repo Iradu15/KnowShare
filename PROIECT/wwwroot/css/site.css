@@ -1,0 +1,119 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+   
+    margin-bottom: 60px;
+    background-color: white;
+    background-image: url("https://www.hdwallpapers10.com/wp-content/uploads/2017/05/Wallpaper%20Simple%20Design%202017.png");
+    background-repeat: no-repeat;
+    margin-bottom: 60px;
+}
+
+
+.note-editor .dropdown-toggle::after {
+    display: none;
+}
+
+.font-logo {
+    font-family: 'Satisfy', cursive;
+}
+
+    .font-logo:hover {
+        color: deepskyblue !important;
+    }
+
+
+.btn {
+    background-color: deepskyblue !important;
+    border-color: dodgerblue;
+}
+
+    .btn:hover {
+        background-color: lightseagreen !important;
+    }
+
+.index-article-title {
+    font-family: 'Satisfy', cursive;
+    font-size: 30px;
+    color: white;
+    text-decoration: underline;
+}
+
+.small-text {
+    font-family: 'Satisfy', cursive;
+    color: white;
+}
+
+.selector-afisare {
+    font-family: 'Satisfy', cursive;
+    color: deepskyblue;
+}
+.text-dark{
+    font-family: 'Satisfy', cursive !important;
+    text-shadow: 4px;
+    font-size: 14px;
+    background-color: darkcyan;
+    border:solid;
+    border-inline:solid;
+    border-inline-color:white;
+    border-color:deepskyblue;
+
+}
+
+.text-dark:hover { 
+    color:deepskyblue !important;
+
+}
+
+.menu-top-top{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+}
+.index-article-row:after {
+    content:" ";
+    display:table;
+    clear:both;
+}
+
+.index-article-column1 {
+    float: left;
+    width:33.33%;
+    padding: 15px;
+}
+
+.index-article-column2 {
+    float: left;
+    width: 66.66%;
+    padding: 15px;
+}
+.img-art-ind {
+    width: 150px;
+    height: 200px;
+}
+
+@media screen and (max-width:600px) {
+    .img-art-ind {
+        width: 125px;
+        height: 200px;
+    }
+    .index-article-column1{ width:100%;}
+    .index-article-column2 { width:100%;}
+}
+
+

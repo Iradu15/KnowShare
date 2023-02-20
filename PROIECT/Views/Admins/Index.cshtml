@@ -1,0 +1,22 @@
+﻿
+<h1 class="index-article-title">Toti Utilizatorii</h1>
+
+@foreach (var user in ViewBag.AllUsers)
+{
+    <div class="card mb-3" style="font-family:Satisfy, cursive; background-color:mintcream;">
+        <div class="card-header">
+            User Id : @user.Id
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@user.UserName</h5>
+        </div>
+        <div class="card-footer">
+            <a href="/Admins/Edit/@user.Id" class="btn btn-sm btn-success">Editeaza</a>
+            <a href="/Admins/Show/@user.Id" class="btn btn-sm btn-success">Vizualizare</a>
+        </div>
+    </div>
+}
+
+<div class="card-title">
+    <a href="/Admins/New/" class="btn btn-sm btn-success">Adauga utilizator</a>
+</div>

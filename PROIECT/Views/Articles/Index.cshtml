@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<p class="index-article-title">Afisare articole</p>
+
+<div class="index-article-row">
+    
+    <div style="float: left;
+         width: 20%; align-content:right;
+         " >
+        <img  src="https://images.all-free-download.com/images/graphiclarge/knowledge_conceptual_drawing_man_books_stack_lightbulbs_icons_6835307.jpg"
+             style="width: 150px; height: 200px;" />
+    </div>
+   
+
+    <div  style=" float:left; align-content:left;
+    width: 80%;">
+           
+            @if (TempData["message"] != null)
+            {
+                <h2 class="alert-success">@ViewBag.Msg</h2>
+
+            }
+
+            <h2 class="index-article-title" style="font-size:14px; text-decoration:none;"> Filtre:</h2>
+            @*form ul pentru CRITERIU  + DOMENIU*@
+            <form method="GET">
+                <div class="input-group mb-3">
+
+                    <label class="small-text"> Cuvant cheie:&nbsp;&nbsp;&nbsp</label>
+                    <input style="background-color:mintcream;" type="text" class="form-control" placeholder="Tasteaza aici" name="search" value="@ViewBag.SearchString">
+   
+                    <label for="sort" class="small-text">&nbsp;&nbsp;Sorteaza dupa:&nbsp;&nbsp; </label> 
+                    @*SELECTUL PENTRU CRITERIUL DE SORTARE*@
+                    <select style="background-color:mintcream;" class="selector-afisare" name="sort" id="sort">
+                        @if (ViewBag.sortBy == 0)
+                        {
+                            <option value=0>Data </option>
+                            <option value=1>Alfabetic</option>
+                        }
+                        else{
+                            <option value=1>Alfabetic</option>
+                            <option value=0>Data</option>
+                        }
+                        @*DEFAULT E DUPA DATA*@
+                    </select>
+                    @*SELECTUL PENTRU CRESCATOR/DESCRESCATOR*@
+                    <select style="background-color:mintcream;" class="selector-afisare" name="sortWay" id="sortWay">
+                        @if (ViewBag.sortWay == 0)
+                        {
+                            <option value=0>Descrescator </option>
+                            <option value=1>Crescator</option>
+                        }
+                        else
+                        {
+                            <option value=1>Crescator</option>
+                            <option value=0>Descrescator</option>
+                        }
+                    </select>
+
+                    @*SELECTUL PENTRU DOMENIU*@
+                    <label class="small-text" for="domain">&nbsp;&nbsp;Alege un domeniu: &nbsp;&nbsp;</label>
+
+                    <select style="background-color:mintcream;" class="selector-afisare" name="domain" id="domain">
+
+                        @if (ViewBag.ChoseDomain != -1) //TINEM CONT DE domeniu
+                        {
+                            @foreach (var dom in ViewBag.Domains) // 2 for uri pentru ca varianta aleasa sa fie cea buna in drop down
+                            {
+                                @if (Convert.ToString(dom.Value) == Convert.ToString(ViewBag.ChoseDomain))
+                                {
+                                    <option value="@(dom.Value)">@dom.Text</option>
+                                    break;
+                                }
+                            }
+
+                            @foreach (var dom in ViewBag.Domains){
+                                @if (Convert.ToString(dom.Value) != Convert.ToString(ViewBag.ChoseDomain))
+                                {
+                                    <option value="@(dom.Value)">@dom.Text</option>
+                                }
+                            }
+
+                            <option value="-1">-</option> // MARE ATENTIE, trebuie sa ma pot intoarce la a nu tine cont de domeniu
+
+                        }
+                        else{
+                            <option value="-1">-</option>
+
+                            @foreach (var dom in ViewBag.Domains)
+                            {
+                                <option value="@(dom.Value)">@dom.Text</option>
+                            }
+                        }
+           
+                    </select>
+        
+        
+        
+                 </div>
+                <button class="btn btn-outline-success"
+                        type="submit" style="color:white;">
+        
+
+                    <img src="https://cdn.pixabay.com/photo/2017/01/13/01/22/magnifying-glass-1976105_960_720.png"
+                         style="width:15px; height:15px; align-content:center; margin-top:0px; margin-bottom:1px;" />
+                         Cauta
+                </button>
+   
+            </form>
+     </div>
+
+</div>
+
+<br /> 
+ <p> &nbsp;</p>
+ <p> &nbsp;</p>
+
+<br />
+@*mergea var daca nu era un partial sau o colectie *@
+
+@* Afisarea paginata a articolelor *@
+<div>
+    <nav class="selector-afisare" style="color:deepskyblue;" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link"
+                   href="@ViewBag.PaginationBaseUrl=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = 1; i <= ViewBag.lastPage; i++)
+            {
+                <li class="page-item">
+                    <a  class="page-link"
+                   href="@ViewBag.PaginationBaseUrl=@i">@(i)</a>
+                </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link"
+                   href="@ViewBag.PaginationBaseUrl=@(ViewBag.lastPage)" arialabel="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+@foreach (PROIECT.Models.Article article in ViewBag.Articles)
+{
+    <div class="card">
+
+        @Html.Partial("ArticleInfo", article )
+
+        <a class="btn btn-success" href="/Articles/Show/@article.Id">Afisare articol</a>
+    </div>
+
+    <br />
+    <br />
+}
+
+                

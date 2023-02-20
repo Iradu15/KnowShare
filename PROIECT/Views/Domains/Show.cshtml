@@ -1,0 +1,27 @@
+﻿@model PROIECT.Models.Domain
+
+
+@{
+    ViewBag.Title = "Afisare domeniu";
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+
+
+<p>@Model.DomainName</p>
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Domains", method: FormMethod.Post, routeValues: new { id = Model.Id }))
+{
+    <button class="btn btn-danger" type="submit">Sterge domeniul</button>
+}
+
+<br />
+<a class="btn alert-success" href="/Domains/Index/">Afisare lista domenii</a>
+
+<br />
+<hr />
+<br />
+
