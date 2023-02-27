@@ -23,13 +23,12 @@ Finally, we've included a built-in markup editor that enables users to style the
 <br /><br />
 ![Untitled3](https://user-images.githubusercontent.com/83701806/220156905-fd0978b0-1ca7-40ca-b054-0354ae0da4dc.png)
 <br /><br />
-## Dependencies
-All of the following packages were installed using the NuGet packet manager:
-
-* Entity Framework Core - Diagnostics, SqlServer, Tools
+## Prerequisites 
+Packages:
+* Entity Framework Core - Design, SqlServer, Tools
 * Identity Framework
-## Building and Running
-The project was built and run exclusively using Visual Studio. The following SDKs should be installed:
+
+<br /><br />SDK:
 
 * ASP.NET and web development
 * .NET desktop development
