@@ -1,5 +1,5 @@
 ## General Description
-KnowShare is a Crowd Knowledge Contribution community-driven platform that allows users to share and contribute knowledge on a wide range of topics. It offer a user-friendly way of organizing and accessing articles based on various categories.
+KnowShare is a Crowd Knowledge Contribution community-driven platform that allows users to share and contribute knowledge on a wide range of topics. It offers a user-friendly way of organizing and accessing articles based on various categories.
 
 ## Features
 One of the key features is a linear versioning system that allows for multiple versions of an article.
